@@ -4,15 +4,16 @@ author: "Shiyu Kang"
 output: github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Problem 1
 
 ```{r problem1}
-# Code for Problem 1
+data("penguins", package = "palmerpenguins")
+head(penguins)
+str(penguins)
+names(penguins)
 ```
+The penguins table contains `r nrow(penguins)` observations and `r ncol(penguins)` variables. 
+The mean of flopper length is `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 2)` mm, excluding missing values.
 
 # Problem 2
 
