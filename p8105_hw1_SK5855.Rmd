@@ -18,7 +18,9 @@ Firstly, for the "species" variable, there are three different species, which ar
 The mean of flipper length is `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 2)` mm, excluding missing values.
 
 ```{r problem1 scatter plot}
-penguin_plot =  ggplot( data = penguins, mapping = aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + geom_point()
+penguin_plot =  ggplot( data = penguins, 
+                        mapping = aes(y = flipper_length_mm, x = bill_length_mm, color = species)) 
+                + geom_point()
 penguin_plot
 ggsave(
   file = "penguin_plot.png", 
@@ -27,7 +29,23 @@ ggsave(
 ```
 
 # Problem 2
-
 ```{r problem2}
-# Code for Problem 2
+set.seed(42)
+example_df = tibble(
+ samp = rnorm(10),
+ positive = samp > 0,
+ text_label = c("a","b","c","d","e","f","g","h","i","j"),
+ factor_label = factor(
+   c("low","high","medium","low","low","high","low","high","medium","low"),
+   levels = c("low","medium","high")
+ )
+)
+mean(pull(example_df,samp))
+mean(pull(example_df,positive))
+mean(pull(example_df,text_label))
+mean(pull(example_df,factor_label))
 ```
+
+When calculating these 4 types of variables, we found that numeric and logical variable have the ouput of mean. For numeric, the mean is `r mean(pull(example_df,samp))`, it doesn't equal to 0.5 because it's generate randomly based on the normal distribution. For logical, True = 1 and False = 0, so the mean will be a number within 0 and 1. 
+
+For factor and character,  
