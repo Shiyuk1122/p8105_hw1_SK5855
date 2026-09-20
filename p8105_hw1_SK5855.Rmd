@@ -7,13 +7,24 @@ output: github_document
 # Problem 1
 
 ```{r problem1}
+library(ggplot2)
 data("penguins", package = "palmerpenguins")
-head(penguins)
-str(penguins)
-names(penguins)
 ```
 The penguins table contains `r nrow(penguins)` observations and `r ncol(penguins)` variables. 
-The mean of flopper length is `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 2)` mm, excluding missing values.
+Each observation represents one penguin. Measurements include bill length, bill depth, and flipper length in millimeters, as well as body mass in grams.
+
+Firstly, for the "species" variable, there are three different species, which are `r paste(unique(penguins$species), collapse = ", ")`. Secondly, "island" variable depicts three islands penguins inhabit, which are `r paste(unique(penguins$island), collapse = ", ") `. 
+
+The mean of flipper length is `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 2)` mm, excluding missing values.
+
+```{r problem1 scatter plot}
+penguin_plot =  ggplot( data = penguins, mapping = aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + geom_point()
+penguin_plot
+ggsave(
+  file = "penguin_plot.png", 
+  plot = penguin_plot, 
+       )
+```
 
 # Problem 2
 
